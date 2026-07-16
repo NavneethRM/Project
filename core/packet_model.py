@@ -15,6 +15,9 @@ class PacketInfo:
     src_port: Optional[int] = None
     dst_port: Optional[int] = None
 
+    ipv4: bool = False
+    ipv6: bool = False
+
     protocol: Protocol = Protocol.UNKNOWN
 
     flags: Optional[str] = None

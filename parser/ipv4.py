@@ -5,5 +5,6 @@ def parse(packet, info):
         return
 
     ip = packet[IP]
+    info.ipv4 = True
     info.src_ip = ip.src
     info.dst_ip = ip.dst

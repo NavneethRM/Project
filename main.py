@@ -6,7 +6,7 @@ def main():
     capture = liveCapture()
     parser = PacketParser()
 
-    packets = capture.capture(packet_cout=10)
+    packets = capture.capture(packet_cout=100)
 
     table = FlowTable()
 
@@ -14,12 +14,12 @@ def main():
     print("-" * 80)
 
     for packet in packets:
-        info = parser.parse(packet)
-        table.add_packet(info)
-    print()
+        table.add_packet(parser.parse(packet))
+    print(f"\nFlows: {len(table)}\n")
 
     for flow in table:
         print(flow)
+        print("-" * 80)
 
 
 
