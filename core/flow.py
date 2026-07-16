@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from collections import Counter
-from core.packet_model import PacketInfo
-from core.protocol import Protocol
+from util.packet_model import PacketInfo
+from util.protocol import Protocol
 
 @dataclass(slots=True)
 class Flow:
@@ -89,5 +89,3 @@ def flow_key(packet: PacketInfo):
         
         return ep1, ep2, packet.protocol
     return ep2, ep1, packet.protocol
-
-

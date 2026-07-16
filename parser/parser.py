@@ -1,7 +1,4 @@
-from scapy.layers.inet import IP, TCP
-from scapy.layers.inet6 import IPv6
-
-from core.packet_model import PacketInfo
+from util.packet_model import PacketInfo
 from parser import ethernet, arp, icmpv6, ipv4, icmp, dns, ipv6, udp ,tcp
 
 class PacketParser:

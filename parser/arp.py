@@ -1,5 +1,5 @@
 from scapy.layers.l2 import ARP
-from core.protocol import Protocol
+from util.protocol import Protocol
 
 def parse(packet, info):
     if ARP not in packet:

@@ -1,5 +1,5 @@
 from scapy.layers.inet import TCP
-from core.protocol import Protocol
+from util.protocol import Protocol
 
 def parse(packet, info):
     if TCP not in packet:

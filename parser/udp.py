@@ -1,5 +1,5 @@
 from scapy.layers.inet import UDP
-from core.protocol import Protocol
+from util.protocol import Protocol
 
 def parse(packet, info):
     if UDP not in packet:
