@@ -1,4 +1,4 @@
-from core.protocol import Protocol
+from util.protocol import Protocol
 from dataclasses import dataclass
 from typing import Optional
 
