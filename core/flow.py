@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from collections import Counter
 from util.packet_model import PacketInfo
-from util.protocol import Protocol
+from util.protocol import ICMPv6, Protocol
 
 @dataclass(slots=True)
 class Flow:
@@ -10,6 +10,7 @@ class Flow:
     endpoint_b: tuple[str, int | None]
 
     protocol: Protocol
+    icmpv6_type: ICMPv6 | None = None
 
     packet_count: int = 0
     byte_count: int = 0
@@ -27,6 +28,7 @@ class Flow:
     def add(self, packet: PacketInfo) -> None:
         if self.packet_count == 0:
             self.start_time = packet.timestamp
+            self.icmpv6_type = packet.icmpv6_type
 
         self.end_time = packet.timestamp
 
@@ -66,11 +68,16 @@ class Flow:
         return self.byte_count / self.duration
 
     def __str__(self):
+        protocol_type = ""
+        if self.protocol == Protocol.ICMPv6 and self.icmpv6_type:
+            protocol_type = f"Type: {self.icmpv6_type.name}"
+
         return (
             f"{self.protocol.name} "
             f"{self.endpoint_a[0]}:{self.endpoint_a[1]} "
             f"<-> "
             f"{self.endpoint_b[0]}:{self.endpoint_b[1]}\n"
+            f"{protocol_type}\n"
             f"Packets : {self.packet_count}\n"
             f"Bytes   : {self.byte_count}\n"
             f"SYN     : {self.syn_count}\n"

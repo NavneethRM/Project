@@ -1,4 +1,4 @@
-from util.protocol import Protocol
+from util.protocol import  ICMPv6, Protocol
 from dataclasses import dataclass
 from typing import Optional
 
@@ -19,6 +19,7 @@ class PacketInfo:
     ipv6: bool = False
 
     protocol: Protocol = Protocol.UNKNOWN
+    icmpv6_type: Optional[ICMPv6] = None
 
     flags: Optional[str] = None
 
